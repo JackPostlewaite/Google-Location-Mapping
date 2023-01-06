@@ -2,6 +2,10 @@ import json
 import csv
 import numpy as np
 from datetime import datetime
+
+with open('GoogleLocationHistory.json',"r") as geo_json_file:
+    data = json.load(geo_json_file)
+
 maxVal=0
 maxIndex=0
 checkLen=1
@@ -43,3 +47,5 @@ for j in range(0,listLen):
         tempInt=tempInt-4294967296
     tempInt=tempInt/(10**7)
     locs[j][1]=tempInt
+
+    np.savetxt('locations.csv',locs, delimiter=',')
